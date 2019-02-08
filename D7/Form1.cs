@@ -18,7 +18,7 @@ namespace D7
 
             labelCount.Text = "Skaits: ";
             buttonAdd.Click += ButtonAdd_Click;
-            inputNumber.Text = "1";
+            TextBox1.Text = "1";
             button2.Click += button2_Click;
             button1.Click += button1_Click;
 
