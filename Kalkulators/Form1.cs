@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,49 +13,112 @@ namespace Kalkulators
 {
     public partial class Form1 : Form
     {
-        string skIevads1 = "";
+        string enteredNumber = "";
 
         string operation = "";
+
+        bool isOperationClicked = false;
 
         public Form1()
         {
             InitializeComponent();
 
-
-
             textBox1.Text = "0";
-            butt0.Click += butt0_Click;
-            butt1.Click += butt1_Click;
-            butt2.Click += butt2_Click;
-            butt3.Click += butt3_Click;
-            butt4.Click += butt4_Click;
-            butt5.Click += butt5_Click;
-            butt6.Click += butt6_Click;
-            butt7.Click += butt7_Click;
-            butt8.Click += butt8_Click;
-            butt9.Click += butt9_Click;
-            buttEqual.Click += buttEqual_Click;
-            buttPlus.Click += buttPlus_Click;
-            buttMinus.Click += buttMinus_Click;
-            buttTimes.Click += buttTimes_Click;
-            buttDivide.Click += buttDivide_Click;
 
         }
 
         private void number_Clicked(int num)
         {
+            if (isOperationClicked)
+            {
+                textBox1.Text = "";
+                isOperationClicked = false;
+            }
+
 
             if (textBox1.Text == "0")
             {
                 textBox1.Text = "";
+                textBox1.Text = num.ToString();
             }
-            textBox1.Text = num.ToString();
+            else if (textBox1.Text != "" || textBox1.Text != "0")
+            {
+                textBox1.Text += num.ToString();
+            }
+
+
         }
 
 
-        private void operation_Click(string op)
+        private void operation_clicked(string op)
         {
+            if(isOperationClicked)
+            {
+                operation = op;
+                return;
+            }
 
+            if (String.IsNullOrEmpty(enteredNumber))
+            {
+                enteredNumber = textBox1.Text;
+
+                operation = op;
+
+            }
+            else
+            {
+                buttEqual_Click(null, null);
+
+            }
+            isOperationClicked = true;
+            
+
+
+            /*if (op == "=")
+            {
+                enteredNumber = textBox1.Text;
+
+                operation = op;
+
+                isOperationClicked = true;
+
+                int enteredNumber2 = Convert.ToInt32(enteredNumber);
+
+                //int sk2 = int.Parse(Console.ReadLine());
+
+                float result = 0;
+
+                switch (op)
+                {
+                    case "*":
+                        result = enteredNumber1 * enteredNumber2;
+                        break;
+                    case "/":
+                        result = enteredNumber1 / enteredNumber2;
+                        break;
+                    case "+":
+                        result = enteredNumber1 + enteredNumber2;
+                        break;
+                    case "-":
+                        result = enteredNumber1 - enteredNumber2;
+                        break;
+                }
+
+                textBox1.Text = result.ToString();
+            }*/
+
+
+
+
+
+            /*
+            string firstNumber = textBox1.Text;
+            textBox1.Text = "";
+            string operation = textBox1.Text;
+            textBox1.Text = "";
+            string secondNumber = textBox1.Text;
+            Console.WriteLine(firstNumber);
+            */
 
         }
 
@@ -82,7 +146,7 @@ namespace Kalkulators
 
         private void buttDivide_Click(object sender, EventArgs e)
         {
-
+            operation_clicked("/");
         }
 
         private void butt4_Click(object sender, EventArgs e)
@@ -105,6 +169,7 @@ namespace Kalkulators
 
         private void buttTimes_Click(object sender, EventArgs e)
         {
+            operation_clicked("*");
 
         }
 
@@ -122,12 +187,16 @@ namespace Kalkulators
 
         private void buttMinus_Click(object sender, EventArgs e)
         {
+            operation_clicked("-");
 
         }
 
         private void buttErase_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
+            enteredNumber = "";
+            operation = "";
+            isOperationClicked = false;
         }
 
         private void butt0_Click(object sender, EventArgs e)
@@ -138,17 +207,65 @@ namespace Kalkulators
 
         private void buttEqual_Click(object sender, EventArgs e)
         {
+            int number1 = int.Parse(enteredNumber);
+            int number2 = int.Parse(textBox1.Text);
+            var result = 0;
+
+           switch (operation)
+            {
+                case "*":
+                    operation = "times";
+                    break;     
+                case "/":      
+                    operation = "divide";
+                    break;     
+                case "+":      
+                    operation = "plus";
+                    break;     
+                case "-":      
+                    operation = "minus";
+                    break;     
+            }
+            
+
+
+            using (HttpClient client = new HttpClient())
+            {
+
+                client.BaseAddress = new Uri("http://localhost:54945");
+                var response = client.GetAsync(String.Format("api/Calculator?number1={0}&number2={1}&op={2}", number1, number2, operation)).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    result = response.Content.ReadAsAsync<int>().Result;
+
+
+                }
+                else
+                {
+                    Console.Write("Notika neparedzēta kļūda!");
+                }
+                textBox1.Text = result.ToString();
+                enteredNumber = textBox1.Text;
+                isOperationClicked = true;
+
+            }
 
         }
 
         private void buttPlus_Click(object sender, EventArgs e)
         {
+            operation_clicked("+");
 
         }
 
         private void butt3_Click(object sender, EventArgs e)
         {
             number_Clicked(3);
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
         }
     }

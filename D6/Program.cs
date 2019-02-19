@@ -14,12 +14,55 @@ namespace D6
             //vaiIrSk();
             //pretejaSeciba();
             //pretejaSeciba2();
-            cikPieci();
+            //cikPieci();
+            minMax();
+
 
             Console.ReadLine();
         }
 
+        static void minMax()
+        {
+            /*List<int> skaitli = new List<int>();
+            while(true)
+            {
+                Console.Write("Ievadi skaitli (vai tuksu, lai partrauktu)");
+                string vertiba = Console.ReadLine();
+                if(String.IsNUllOrEmpty)
+                {
+                    skaitli.Add(int.Parse(vertiba));
+                }
+                int min = skaitli.First();
+                int max = skaitli[0];
 
+                foreach(int sk in skaitli)
+                {
+                    if (sk<min)
+                    {
+                        min = sk;
+                    }
+                    if (sk>max)
+                    {
+                        max = sk;
+                    }
+                }
+
+
+            }*/
+
+            //2. variants:
+
+            List<int> skaitli = new List<int>();
+
+            int min = skaitli.Min();
+            int max = skaitli.Max();
+
+            Console.Write("Ievadi skaitli (vai tuksu, lai partrauktu)");
+            string vertiba = Console.ReadLine();
+
+            Console.WriteLine("Min ir {0}, max = {1}", min, max);
+
+        }
 
         static void cikPieci()
         {

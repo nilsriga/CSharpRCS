@@ -18,9 +18,9 @@ namespace D4
 
         public void Info()
         {
-            Console.WriteLine("Darbinieku sauc {0}", Vards, Uzvards);
-            Console.WriteLine("Darbinieka dzivesvieta: {0}", Dzivesvieta.PilnaAdrese);
-            Console.WriteLine("Darbinieka dzivesvieta: {0}, {1}, {2}", Dzivesvieta.Valsts, Dzivesvieta.Pilseta, Dzivesvieta.Iela);
+            Console.WriteLine("Darbinieku sauc {0} {1}", Vards, Uzvards);
+            Console.WriteLine("Darbinieka dzivesvieta: {0}", Dzivesvieta.PilnaAdrese());
+            Console.WriteLine("Darbinieka darbavieta: {0}, {1}, {2}", Darbavieta.Valsts, Darbavieta.Pilseta, Darbavieta.Iela);
 
         }
     }

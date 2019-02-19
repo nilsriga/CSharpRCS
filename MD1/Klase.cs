@@ -8,5 +8,15 @@ namespace MD1
 {
     class Klase
     {
+        public string KlasesNosaukums;
+
+        public int SkolenuSkaits;
+
+        public Telpa Telpa;
+
+
+
+
+
     }
 }

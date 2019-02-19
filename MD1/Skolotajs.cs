@@ -8,5 +8,11 @@ namespace MD1
 {
     class Skolotajs
     {
+        public string Vards;
+
+        public string Uzvards;
+
+        public string Epasts;
+
     }
 }

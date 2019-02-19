@@ -195,7 +195,7 @@
             this.butt3.TabIndex = 14;
             this.butt3.Text = "3";
             this.butt3.UseVisualStyleBackColor = true;
-            this.butt3.Click += new System.EventHandler(this.button15_Click);
+            this.butt3.Click += new System.EventHandler(this.butt3_Click);
             // 
             // buttDivide
             // 
@@ -238,6 +238,7 @@
             this.Controls.Add(this.buttPlus);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.Click += new System.EventHandler(this.button15_Click);
             this.ResumeLayout(false);
             this.PerformLayout();

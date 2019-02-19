@@ -13,6 +13,7 @@ namespace D4
             // Piemers();
             //aplaReikins();
             Uzdevums23();
+
             Console.ReadLine();
         }
 
@@ -29,6 +30,8 @@ namespace D4
             darbinieks.Darbavieta.Valsts = "Latvija";
             darbinieks.Darbavieta.Pilseta = "Riga";
             darbinieks.Darbavieta.Iela = "Brivibas iela";
+
+            darbinieks.Info();
                 
         }
 

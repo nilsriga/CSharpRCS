@@ -8,5 +8,14 @@ namespace MD1
 {
     class Skolens
     {
+        public string Vards;
+
+        public string Uzvards;
+
+        public string Epasts;
+
+        public int DzimsanasGads;
+
+        public Klase Klase;
     }
 }

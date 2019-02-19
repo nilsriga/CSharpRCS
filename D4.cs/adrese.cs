@@ -17,7 +17,7 @@ namespace D4
 
         public string PilnaAdrese()
         {
-            return string.Format("{0}, {1}, {2}", Valsts, Pilseta, Iela);
+            return String.Format("{0}, {1}, {2}", Valsts, Pilseta, Iela);
         }
 
     }

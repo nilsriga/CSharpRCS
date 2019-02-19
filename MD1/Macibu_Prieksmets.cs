@@ -8,5 +8,11 @@ namespace MD1
 {
     class Macibu_Prieksmets
     {
+        public string Nosaukums;
+
+        public Telpa Telpa;
+
+        public Skolotajs Skolotajs;
+
     }
 }

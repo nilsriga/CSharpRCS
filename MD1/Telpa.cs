@@ -8,5 +8,9 @@ namespace MD1
 {
     class Telpa
     {
+        public int Numurs;
+
+        public int Stavs;
+
     }
 }
