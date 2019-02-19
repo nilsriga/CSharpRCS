@@ -34,7 +34,7 @@ namespace MovieApp
 
                     if (response.IsSuccessStatusCode)
                     {
-
+                        //d
                         SearchResult result = response.Content.ReadAsAsync<SearchResult>().Result;
                         int pageCount = result.totalResults / 10;
                         if (page > pageCount)
